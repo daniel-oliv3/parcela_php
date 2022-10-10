@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Parcela +</title>
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="./css/style.css">
 	<link rel="shortcut icon" href="./img/favicon.ico"/>
 </head>
 <body>
@@ -34,6 +34,18 @@
         //Laço de repetição para imprimir o valor das parcelas
         while($controle <= $quantidade_parc){
 
+            echo "Valor da parcela " .  number_format($valor_parc, 2, ',', '.') . "<br>";
+
+            //Incrementa a variavel após imprimir a parcela
+            $controle++;
+
+            $soma_valor_parc = 0;
+
+            //Soma o valor das parcelas
+            $soma_valor_parc += number_format($valor_parc, 2, '.', '');
+
+            //Imprime o valor total da soma das parcelas e converte para o formato real separado pela virgula
+            echo "<br>Valor total parcelado: " .number_format($soma_valor_parc, 2, ',', '.');
         }
 
 
@@ -41,7 +53,7 @@
 
 
 	
-	<script src="js/script.js"></script>
+	<script src="./js/script.js"></script>
 </body>
 </html>
 
