@@ -12,7 +12,15 @@
 
     
     
-    <?php 
+    <?php
+        //VALOR DA COMPRA
+        $valor_total = 7;
+        
+        //QUANTIDADE DE PARCELAS
+        $quantidade_parc = 3;
+
+        //imprime na tela, Converte o valor para o formato real separado pela virgula
+        echo "Valor da compra: " . number_format($valor_total, 2, ',', '.') . "<br>";
     
     ?>
 
