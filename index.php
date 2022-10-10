@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Parcela +</title>
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="shortcut icon" href="img/favicon.ico"/>
+	<link rel="shortcut icon" href="./img/favicon.ico"/>
 </head>
 <body>
 
@@ -22,6 +22,21 @@
         //imprime na tela, Converte o valor para o formato real separado pela virgula
         echo "Valor da compra: " . number_format($valor_total, 2, ',', '.') . "<br>";
     
+        //Imprime a quantidade de parcelas
+        echo "Quantidade de parcelas: $quantidade_parc <br><br>";
+
+        //Calcular o valor de cada parcela
+        $valor_parc = $valor_total / $quantidade_parc;
+
+        //Variavel para controlar o while
+        $controle = 1;
+
+        //Laço de repetição para imprimir o valor das parcelas
+        while($controle <= $quantidade_parc){
+
+        }
+
+
     ?>
 
 
