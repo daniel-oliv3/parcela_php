@@ -31,6 +31,9 @@
         //Variavel para controlar o while
         $controle = 1;
 
+        //Soma total das parcelas
+        $soma_valor_parc = 0;
+
         //Laço de repetição para imprimir o valor das parcelas
         while($controle <= $quantidade_parc){
 
@@ -39,15 +42,15 @@
             //Incrementa a variavel após imprimir a parcela
             $controle++;
 
-            $soma_valor_parc = 0;
 
             //Soma o valor das parcelas
             $soma_valor_parc += number_format($valor_parc, 2, '.', '');
 
-            //Imprime o valor total da soma das parcelas e converte para o formato real separado pela virgula
-            echo "<br>Valor total parcelado: " .number_format($soma_valor_parc, 2, ',', '.');
+            
         }
 
+        //Imprime o valor total da soma das parcelas e converte para o formato real separado pela virgula
+        echo "<br>Valor total parcelado: " .number_format($soma_valor_parc, 2, ',', '.') . "<br>";
 
     ?>
 
