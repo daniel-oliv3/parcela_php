@@ -1,3 +1,6 @@
+<?php
+date_default_timezone_set('America/Manaus');
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -14,7 +17,7 @@
     
     <?php
         //VALOR DA COMPRA
-        $valor_total = 5;
+        $valor_total = 7;
         
         //QUANTIDADE DE PARCELAS
         $quantidade_parc = 3;
@@ -34,19 +37,36 @@
         //Soma total das parcelas
         $soma_valor_parc = 0;
 
+        //Recupera a data atual
+        $data_atual = new DateTime();
+        var_dump($data_atual);
+
         //Laço de repetição para imprimir o valor das parcelas
         while($controle <= $quantidade_parc){
+
+            //Somar um mês na data
+            $data_atual->add(new DateInterval("P1M"));
 
             //Acessa o if quando e a ultima parcela para corrigir o valor da comprar
             if($controle == $quantidade_parc){
                 //Utiliza a soma das parcelas ja impressa e subtrair do valor total da compra para obter o valor a ultima parcela e corrigir a diferença
                 $valor_ultima_parc = $valor_total - $soma_valor_parc;
+
+                //Converte o valor da parcela para o formato real separado pela virgula
+                echo "Valor da parcela " .  number_format($valor_ultima_parc, 2, ',', '.') . "<br>";
+
+                //Soma o valor das parcelas
+                $soma_valor_parc += number_format($valor_ultima_parc, 2, '.', '');
+
+                var_dump($data_atual);
             }else {
                 //Converte o valor da parcela para o formato real separado pela virgula
                 echo "Valor da parcela " .  number_format($valor_parc, 2, ',', '.') . "<br>";
 
                 //Soma o valor das parcelas
                 $soma_valor_parc += number_format($valor_parc, 2, '.', '');
+
+                var_dump($data_atual);
             }
            
 
