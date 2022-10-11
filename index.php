@@ -17,7 +17,7 @@ date_default_timezone_set('America/Manaus');
     
     <?php
         //VALOR DA COMPRA
-        $valor_total = 7;
+        $valor_total = 700;
         
         //QUANTIDADE DE PARCELAS
         $quantidade_parc = 3;
@@ -39,7 +39,7 @@ date_default_timezone_set('America/Manaus');
 
         //Recupera a data atual
         $data_atual = new DateTime();
-        var_dump($data_atual);
+        //var_dump($data_atual);
 
         //Laço de repetição para imprimir o valor das parcelas
         while($controle <= $quantidade_parc){
@@ -57,25 +57,21 @@ date_default_timezone_set('America/Manaus');
 
                 //Soma o valor das parcelas
                 $soma_valor_parc += number_format($valor_ultima_parc, 2, '.', '');
-
-                var_dump($data_atual);
             }else {
                 //Converte o valor da parcela para o formato real separado pela virgula
                 echo "Valor da parcela " .  number_format($valor_parc, 2, ',', '.') . "<br>";
 
                 //Soma o valor das parcelas
                 $soma_valor_parc += number_format($valor_parc, 2, '.', '');
-
-                var_dump($data_atual);
+               
             }
-           
+
+            //var_dump($data_atual);
+            //Converter a data
+            echo "Data de vencimento: " . $data_atual->format('d/m/Y') . "<br><br>";
 
             //Incrementa a variavel após imprimir a parcela
             $controle++;
-
-
-            
-
             
         }
 
