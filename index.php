@@ -14,7 +14,7 @@
     
     <?php
         //VALOR DA COMPRA
-        $valor_total = 7;
+        $valor_total = 5;
         
         //QUANTIDADE DE PARCELAS
         $quantidade_parc = 3;
@@ -37,14 +37,24 @@
         //Laço de repetição para imprimir o valor das parcelas
         while($controle <= $quantidade_parc){
 
-            echo "Valor da parcela " .  number_format($valor_parc, 2, ',', '.') . "<br>";
+            //Acessa o if quando e a ultima parcela para corrigir o valor da comprar
+            if($controle == $quantidade_parc){
+                //Utiliza a soma das parcelas ja impressa e subtrair do valor total da compra para obter o valor a ultima parcela e corrigir a diferença
+                $valor_ultima_parc = $valor_total - $soma_valor_parc;
+            }else {
+                //Converte o valor da parcela para o formato real separado pela virgula
+                echo "Valor da parcela " .  number_format($valor_parc, 2, ',', '.') . "<br>";
+
+                //Soma o valor das parcelas
+                $soma_valor_parc += number_format($valor_parc, 2, '.', '');
+            }
+           
 
             //Incrementa a variavel após imprimir a parcela
             $controle++;
 
 
-            //Soma o valor das parcelas
-            $soma_valor_parc += number_format($valor_parc, 2, '.', '');
+            
 
             
         }
