@@ -20,6 +20,9 @@ $cad_usuario->bindParam(':usuario_id', $usuario_id, PDO::PARAM_INT);
 //Executa a query
 $cad_usuario->execute();
 
+//Recebe o id do carrinho
+$carrinho_id = "";
+
 //Acessa o if quando cadastrar o carrinho no BD
 if($cad_usuario->rowCount()){
     //recupera o id do registro inserido no banco de dados
@@ -27,6 +30,8 @@ if($cad_usuario->rowCount()){
     //var_dump($carrinho_id);
 }
 
+//Variavel para receber o valor final da parcela
+$valor_final_parcela = "";
 
 ?>
 <!DOCTYPE html>
@@ -85,12 +90,18 @@ if($cad_usuario->rowCount()){
 
                 //Soma o valor das parcelas
                 $soma_valor_parc += number_format($valor_ultima_parc, 2, '.', '');
+
+                //Valor final da parcela
+                $valor_final_parcela = $valor_ultima_parc;
             }else {
                 //Converte o valor da parcela para o formato real separado pela virgula
                 echo "Valor da parcela " .  number_format($valor_parc, 2, ',', '.') . "<br>";
 
                 //Soma o valor das parcelas
                 $soma_valor_parc += number_format($valor_parc, 2, '.', '');
+
+                //Valor final da parcela
+                $valor_final_parcela = $valor_parc;
                
             }
 
@@ -98,11 +109,20 @@ if($cad_usuario->rowCount()){
             //Converter a data
             echo "Data de vencimento: " . $data_atual->format('d/m/Y') . "<br><br>";
 
-            //Incrementa a variavel após imprimir a parcela
-            $controle++;
-            
+            //Acessa o if quando tem o id do carrinho
+            if(!empty($carrinho_id)){
+                //Cadastrar as parcelas da comprar.
+                $query_parcelas = "INSERT INTO parcelas (valor, data_vencimento, carrinho_id) VALUES (:valor, :data_vencimento, :carrinho_id)";
+                $cad_parcelas = $conn->prepare($query_parcelas);
+                $cad_parcelas->bindParam(':valor', $valor_final_parcela);
+                $cad_parcelas->bindValue(':data_vencimento', $data_atual->format('Y-m-d'));
+                $cad_parcelas->bindParam(':carrinho_id', $carrinho_id);
+                $cad_parcelas->execute();                        
         }
 
+        //Incrementa a variavel após imprimir a parcela
+        $controle++;
+    }
         //Imprime o valor total da soma das parcelas e converte para o formato real separado pela virgula
         echo "<br>Valor total parcelado: " .number_format($soma_valor_parc, 2, ',', '.') . "<br>";
 
