@@ -6,7 +6,7 @@ date_default_timezone_set('America/Manaus');
 include_once "./conexao.php";
 
 //Id do usuario da compra
-$usuario_id = 2;
+$usuario_id = 1;
 
 //Cadastrar a compra do usuario no banco de dados na tabela "carrinhos".
 $query_usuario = "INSERT INTO carrinhos (usuario_id) VALUES (:usuario_id)";
@@ -92,7 +92,7 @@ $valor_final_parcela = "";
                 $soma_valor_parc += number_format($valor_ultima_parc, 2, '.', '');
 
                 //Valor final da parcela
-                $valor_final_parcela = $valor_ultima_parc;
+                $valor_final_parcela = number_format($valor_ultima_parc, 2, '.', '');
             }else {
                 //Converte o valor da parcela para o formato real separado pela virgula
                 echo "Valor da parcela " .  number_format($valor_parc, 2, ',', '.') . "<br>";
@@ -101,7 +101,7 @@ $valor_final_parcela = "";
                 $soma_valor_parc += number_format($valor_parc, 2, '.', '');
 
                 //Valor final da parcela
-                $valor_final_parcela = $valor_parc;
+                $valor_final_parcela = number_format($valor_parc, 2, '.', '');
                
             }
 
