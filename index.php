@@ -1,5 +1,33 @@
 <?php
+//Definir um fuso horario padrão
 date_default_timezone_set('America/Manaus');
+
+//Incluir o arquivo conexão com o banco de dados
+include_once "./conexao.php";
+
+//Id do usuario da compra
+$usuario_id = 2;
+
+//Cadastrar a compra do usuario no banco de dados na tabela "carrinhos".
+$query_usuario = "INSERT INTO carrinhos (usuario_id) VALUES (:usuario_id)";
+
+//Prepara a query
+$cad_usuario = $conn->prepare($query_usuario);
+
+//Substituir o link pelo valor
+$cad_usuario->bindParam(':usuario_id', $usuario_id, PDO::PARAM_INT);
+
+//Executa a query
+$cad_usuario->execute();
+
+//Acessa o if quando cadastrar o carrinho no BD
+if($cad_usuario->rowCount()){
+    //recupera o id do registro inserido no banco de dados
+    $carrinho_id = $conn->lastInsertId();
+    //var_dump($carrinho_id);
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -14,7 +42,7 @@ date_default_timezone_set('America/Manaus');
 <body>
 
     
-    
+<div class="container">
     <?php
         //VALOR DA COMPRA
         $valor_total = 700;
@@ -79,7 +107,7 @@ date_default_timezone_set('America/Manaus');
         echo "<br>Valor total parcelado: " .number_format($soma_valor_parc, 2, ',', '.') . "<br>";
 
     ?>
-
+</div>
 
 	
 	<script src="./js/script.js"></script>
